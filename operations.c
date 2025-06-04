@@ -74,7 +74,7 @@ int ft_pb_push(t_stack *stack)
 }
 
 //ra	rotate a	shifts all elements of stack a from bottom to top
-int ft_pb_push(t_stack *stack)
+int ft_ra_rotate(t_stack *stack)
 {
 	int temp;
 
@@ -88,3 +88,26 @@ int ft_pb_push(t_stack *stack)
 	return(0);
 }
 
+//rb	rotate b	shifts all elements of stack b from bottom to top
+int ft_rb_rotate(t_stack *stack)
+{
+	int temp;
+
+	if (stack -> len_a <= 1)
+	return(0);
+}
+
+//rr	rotate a + rotate b	both ra and rb
+
+int ft_rr_rotate(t_stack *stack)
+{
+	ft_ra_rotate(&stack);
+	ft_rb_rotate(&stack);
+	returb(0);
+}
+
+//rra	reverse rotate a	shifts all elements of stack a from top to bottom
+int ft_rra_rrotate(t_stack *stack)
+{
+
+}
