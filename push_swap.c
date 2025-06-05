@@ -32,3 +32,4 @@ int main(int argc, char **argv)
         return (free_exit(&stack)  1);
     return (free_exit(t_stack));
 }
+

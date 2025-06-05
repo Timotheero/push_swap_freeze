@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 15:15:16 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/04 15:15:16 by tdietz-r         ###   ########.fr       */
+/*   Created: 2025/06/05 18:20:23 by tdietz-r          #+#    #+#             */
+/*   Updated: 2025/06/05 18:20:23 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.c"
 
-# include <unistd.h>
-# include <limits.h>
-# include <stdlib.h>
+ft_atoi
 
+ft_isdigit`
 
-typedef struct s_stack
-{
-	int		*stack_a;
-	int		*stack_b;
-	int		len_a;
-	int		len_b;
-
-}			t_stack;
-
-
-
-#endif
+ft_split
