@@ -98,7 +98,6 @@ int ft_rb_rotate(t_stack *stack)
 }
 
 //rr	rotate a + rotate b	both ra and rb
-
 int ft_rr_rotate(t_stack *stack)
 {
 	ft_ra_rotate(&stack);
@@ -109,5 +108,39 @@ int ft_rr_rotate(t_stack *stack)
 //rra	reverse rotate a	shifts all elements of stack a from top to bottom
 int ft_rra_rrotate(t_stack *stack)
 {
+	int temp;
 
+	if (stack -> len_a <= 1)
+		return(0);
+	
+	temp = stack -> stack_a[stack -> len_a - 1];
+	memmove(&stack ->stack_a[1], &stack ->stack_a[0])
+	stack -> stack_a[0] = temp;
+
+ft_printf("rra\n");
+return(0);
+}
+
+//rrb	reverse rotate b	shifts all elements of stack b from top to bottom
+int ft_rrb_rotate(t_stack *stack)
+{
+	int temp;
+
+	if (stack -> len_b <= 1)
+		return(0);
+
+	temp = stack -> stack_b[stack -> len_b - 1];
+	memmove(&stack ->stack_b[1], &stack ->stack_b[0])
+	stack -> stack_b[0] = temp;
+
+	ft_printf("rrb\n");
+	return(0);
+}
+
+//rrr	reverse rotate a + reverse rotate b	both rra and rrb
+int ft_rrr_rotate (t_stack *stack)
+{
+	ft_rra_rotate(t_stack *stack);
+	ft_rrb_rotate(t_stack *stack);
+	return(0);
 }
