@@ -20,37 +20,37 @@
 */
 //check if argument is a valid number
 
-static int	check_arg_is_number(char *argv)
+static int	check_arg_is_number(char *combined_str_of_args)
 {
     int i;
 
     i = 0;
-    if (argv[i] == '+' || argv[i] == '-')
+    if (combined_str_of_args[i] == '+' || combined_str_of_args[i] == '-')
         i++;
-    if (argv[i] == '\0')
+    if (combined_str_of_args[i] == '\0')
         return(1);
         
-    while(argv[i])
+    while(combined_str_of_args[i])
     {
-        if (!ft_isdigit(argv[i]))
+        if (!ft_isdigit(combined_str_of_args[i]))
             return(1);
         i++;
     }
     return(0);
 }
 
-static int	check_arg_double(char **argv)
+static int	check_arg_double(char **combined_str_of_args)
 {
 	int i;
     int j;
 
     i = 1; 
-    while (argv[i])
+    while (combined_str_of_args[i])
     {
         j = i + 1;
-        while (argv[j])
+        while (combined_str_of_args[j])
         {
-            if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+            if (ft_atoi(combined_str_of_args[i]) == ft_atoi(combined_str_of_args[j]))
                 return (1);
             j++;
         }
@@ -59,38 +59,38 @@ static int	check_arg_double(char **argv)
     return (0);
 }
 
-static int	check_arg_is_zero(char *argv)
+static int	check_arg_is_zero(char *combined_str_of_args)
 {
-    if (ft_atoi(argv) == 0)
+    if (ft_atoi(combined_str_of_args) == 0)
         return (1);
     return (0);
 }
 
-char *join_all_args(char **argv)
+char *join_all_args(char *argv)
 {
-	char *result;
+	char *combined_str_of_args;
 	char *temp;
 	int i;
 
 	if (!argv[1])
 		return (NULL);
 	
-	result = ft_strdup(argv[1]);
+	combined_str_of_args = ft_strdup(argv[1]);
 	i = 2;
 	
 	while (argv[i])
 	{
-		temp = ft_strjoin(result, " ");
-		free(result);
-		result = temp;
+		temp = ft_strjoin(combined_str_of_args, " ");
+		free(combined_str_of_args);
+		combined_str_of_args = temp;
 		
-		temp = ft_strjoin(result, argv[i]);
-		free(result);
-		result = temp;
+		temp = ft_strjoin(combined_str_of_args, argv[i]);
+		free(combined_str_of_args);
+		combined_str_of_args = temp;
 		
 		i++;
 	}
-	return (result);
+	return (combined_str_of_args);
 }
 
 static int is_integer_range()
@@ -99,13 +99,13 @@ static int is_integer_range()
 	return(0);
 }
 
-static int link_to_check_functions()
+static int link_to_check_functions(char* combined_str_of_args)
 {
-	if (check_arg_is_number( argv))
+	if (check_arg_is_number( combined_str_of_args))
 		return(1);
-	if (check_arg_is_zero(argv))
+	if (check_arg_is_zero(combined_str_of_args))
 		return(1);
-	if (check_arg_double( *argv))
+	if (check_arg_double(combined_str_of_args))
 		return(1);
 	return(0);
 }
@@ -113,32 +113,27 @@ static int link_to_check_functions()
 int	general_check_input(int argc, char **argv)
 {
 	char *combined_str_of_args;
-	int arg_is_combined;
 
-	arg_is_combined = 0;
-
-	 if (!argv[1])
+	if (!argv[1])
         return (1)
 	if (argc >= 2)
 	{
 		combined_str_of_args = join_all_args(*argv);
-		if (!combined_args)
-			return(1);
-		arg_is_combined = 1;
-		if (!ft_isdigit(combined_str_of_args))
+		if (!combined_str_of_args)
 			return(1);
 	}
 	else 
-	{
-		if (!ft_isdigit(argv[i]));
-			return(1);
-	}
+		combined_str_of_args = argv[1];
 	if (link_to_check_functions(combined_str_of_args))
-		return(1);
-	if (arg_is_combined == 1 && )
+		return(1);				
 	return (0);
 }
+		
 
+		if (!ft_isdigit(argv[i]));
+		return(1);
+		if (!ft_isdigit(combined_str_of_args))
+	return(1);
 
 char **ft_split(char const *s, char c);
 ft_strchr
