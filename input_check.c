@@ -13,44 +13,42 @@
 #include "ft_push_swap.h"
 
 
-
-/* arg_is_number:
-*   Checks if the argument is a number. +1 1 and -1 are all valid numbers.
-*   Return: 1 if the argument is a number, 0 if not.
-*/
-//check if argument is a valid number
-
-static int	check_arg_is_number(char *combined_str_of_args)
+static int	check_arg_is_number(char **str_arr)
 {
-    int i;
+	int	i;
+	int	j;
 
-    i = 0;
-    if (combined_str_of_args[i] == '+' || combined_str_of_args[i] == '-')
-        i++;
-    if (combined_str_of_args[i] == '\0')
-        return(1);
-        
-    while(combined_str_of_args[i])
-    {
-        if (!ft_isdigit(combined_str_of_args[i]))
-            return(1);
-        i++;
-    }
-    return(0);
+	if (!str_arr)
+		return (1);
+	i = -1;
+	while (str_arr[++i])
+	{
+		j = 0;
+		if (!str_arr[i][j])
+			return (1);
+		if ((str_arr[i][j] == '+' || str_arr[i][j] == '-') && !str_arr[i][++j])
+			return (1);
+		while (str_arr[i][j])
+		{
+			if (!ft_isdigit(str_arr[i][j]) || j++ > 10)
+				return (1);
+		}
+	}
+	return (0);
 }
 
-static int	check_arg_double(char **combined_str_of_args)
+static int check_arg_double(char **split_str_array)
 {
-	int i;
+    int i;
     int j;
 
-    i = 1; 
-    while (combined_str_of_args[i])
+    i = 0;
+    while (split_str_array[i])
     {
         j = i + 1;
-        while (combined_str_of_args[j])
+        while (split_str_array[j])
         {
-            if (ft_atoi(combined_str_of_args[i]) == ft_atoi(combined_str_of_args[j]))
+            if (ft_atoi(split_str_array[i]) == ft_atoi(split_str_array[j]))
                 return (1);
             j++;
         }
@@ -59,21 +57,12 @@ static int	check_arg_double(char **combined_str_of_args)
     return (0);
 }
 
-static int	check_arg_is_zero(char *combined_str_of_args)
-{
-    if (ft_atoi(combined_str_of_args) == 0)
-        return (1);
-    return (0);
-}
 
 char *join_all_args(char *argv)
 {
 	char *combined_str_of_args;
 	char *temp;
 	int i;
-
-	if (!argv[1])
-		return (NULL);
 	
 	combined_str_of_args = ft_strdup(argv[1]);
 	i = 2;
@@ -93,19 +82,77 @@ char *join_all_args(char *argv)
 	return (combined_str_of_args);
 }
 
-static int is_integer_range()
+static int is_integer_range(char **split_str_array)
 {
+    int i;
+    int j;
+    int len;
+    int is_negative;
+    
+    i = 0;
+    while (split_str_array[i])
+    {
+        j = 0;
+        is_negative = (split_str_array[i][0] == '-');
+        if (split_str_array[i][j] == '-' || split_str_array[i][j] == '+')
+            j++;
+        while (split_str_array[i][j] == '0')
+            j++;
+        len = 0;
+        while (split_str_array[i][j + len])
+            len++;
+        if (len > 10)
+            return (1);
+        if (len == 10)
+			if (check_max_min_int(&split_str_array[i], is_negative ))
+				return(1);
+        i++;
+    }
+    return (0);  
+}
 
+static int check_max_min_int(char *single_arg_of_array[i], int is_negative )
+{
+	if (is_negative && ft_strcmp(&single_arg_of_array[i][1], "2147483648") > 0)
+		return (1); 
+	if (!is_negative && ft_strcmp(&single_arg_of_array[i][0], "2147483647") > 0)
+		return (1);
 	return(0);
 }
 
-static int link_to_check_functions(char* combined_str_of_args)
+
+
+
+static int  *char_array_to_int_array(char **split_str_array)
 {
-	if (check_arg_is_number( combined_str_of_args))
+	int *int_array;
+    int i;
+    int size;
+
+    size = 0;
+    while (str_array[size])
+        size++;
+    int_array = (int *)malloc(sizeof(int) * size);
+    if (!int_array)
+        return (NULL);
+    i = 0;
+    while (i < size)
+    {
+        int_array[i] = ft_atoi(str_array[i]);
+        i++;
+    }
+
+    return (int_array);
+}
+
+
+static int link_to_check_functions(char** split_str_array)
+{
+	if (check_arg_is_number( split_str_array))
 		return(1);
-	if (check_arg_is_zero(combined_str_of_args))
+	if (check_arg_double(split_str_array))
 		return(1);
-	if (check_arg_double(combined_str_of_args))
+	if (char_array_to_int_array(split_str_array))
 		return(1);
 	return(0);
 }
@@ -113,9 +160,10 @@ static int link_to_check_functions(char* combined_str_of_args)
 int	general_check_input(int argc, char **argv)
 {
 	char *combined_str_of_args;
-
+	char **split_str_array;
+	int *final_int_array;
 	if (!argv[1])
-        return (1)
+        return (1);
 	if (argc >= 2)
 	{
 		combined_str_of_args = join_all_args(*argv);
@@ -124,23 +172,15 @@ int	general_check_input(int argc, char **argv)
 	}
 	else 
 		combined_str_of_args = argv[1];
-	if (link_to_check_functions(combined_str_of_args))
-		return(1);				
-	return (0);
-}
-		
-
-		if (!ft_isdigit(argv[i]));
+	split_str_array = ft_split(combined_str_of_args);
+	if (!split_str_array)
 		return(1);
-		if (!ft_isdigit(combined_str_of_args))
-	return(1);
-
-char **ft_split(char const *s, char c);
-ft_strchr
-
-argc = 0 -> error (main funktion check)
-argc = 1 -> pass to check
-argc >= 2 -> pass to split
-
-string 
-
+	if (link_to_check_functions(split_str_array))
+		return(1);
+	final_int_array = char_array_to_int_array( split_str_array);
+	if (!final_int_array)
+		return(1);
+	free(combined_str_of_args);
+	ft_free_split(split_str_array);
+	return (final_int_array);
+}
