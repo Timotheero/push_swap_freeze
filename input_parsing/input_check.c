@@ -37,51 +37,28 @@ static int	check_arg_is_number(char **str_arr)
 	return (0);
 }
 
-static int check_arg_double(char **split_str_array)
+static int	check_arg_double(char **str_arr)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (split_str_array[i])
-    {
-        j = i + 1;
-        while (split_str_array[j])
-        {
-            if (ft_atoi(split_str_array[i]) == ft_atoi(split_str_array[j]))
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
-}
-
-
-char *join_all_args(char *argv)
-{
-	char *combined_str_of_args;
-	char *temp;
-	int i;
-	
-	combined_str_of_args = ft_strdup(argv[1]);
-	i = 2;
-	
-	while (argv[i])
+	if (!str_arr)
+		return (1);
+	i = -1;
+	while (str_arr[++i])
 	{
-		temp = ft_strjoin(combined_str_of_args, " ");
-		free(combined_str_of_args);
-		combined_str_of_args = temp;
-		
-		temp = ft_strjoin(combined_str_of_args, argv[i]);
-		free(combined_str_of_args);
-		combined_str_of_args = temp;
-		
-		i++;
+		j = i;
+		while (str_arr[++j])
+		{
+			if (ft_atoi(str_arr[i]) == ft_atoi(str_arr[j]))
+				return (1);
+		}
 	}
-	return (combined_str_of_args);
+	return (0);
 }
 
+
+//check ab hier 
 static int is_integer_range(char **split_str_array)
 {
     int i;
@@ -120,9 +97,6 @@ static int check_max_min_int(char *single_arg_of_array[i], int is_negative )
 	return(0);
 }
 
-
-
-
 static int  *char_array_to_int_array(char **split_str_array)
 {
 	int *int_array;
@@ -143,44 +117,4 @@ static int  *char_array_to_int_array(char **split_str_array)
     }
 
     return (int_array);
-}
-
-
-static int link_to_check_functions(char** split_str_array)
-{
-	if (check_arg_is_number( split_str_array))
-		return(1);
-	if (check_arg_double(split_str_array))
-		return(1);
-	if (char_array_to_int_array(split_str_array))
-		return(1);
-	return(0);
-}
-
-int	general_check_input(int argc, char **argv)
-{
-	char *combined_str_of_args;
-	char **split_str_array;
-	int *final_int_array;
-	if (!argv[1])
-        return (1);
-	if (argc >= 2)
-	{
-		combined_str_of_args = join_all_args(*argv);
-		if (!combined_str_of_args)
-			return(1);
-	}
-	else 
-		combined_str_of_args = argv[1];
-	split_str_array = ft_split(combined_str_of_args);
-	if (!split_str_array)
-		return(1);
-	if (link_to_check_functions(split_str_array))
-		return(1);
-	final_int_array = char_array_to_int_array( split_str_array);
-	if (!final_int_array)
-		return(1);
-	free(combined_str_of_args);
-	ft_free_split(split_str_array);
-	return (final_int_array);
 }
