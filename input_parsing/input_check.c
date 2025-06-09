@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_input_check.c                                   :+:      :+:    :+:   */
+/*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 17:30:07 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/05 17:30:07 by tdietz-r         ###   ########.fr       */
+/*   Created: 2025/06/05 13:16:40 by tdietz-r          #+#    #+#             */
+/*   Updated: 2025/06/05 13:16:40 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "../push_swap.h"
 
 
 static int	check_arg_is_number(char **str_arr)
@@ -88,11 +88,11 @@ static int is_integer_range(char **split_str_array)
     return (0);  
 }
 
-static int check_max_min_int(char *single_arg_of_array[i], int is_negative )
+static int check_max_min_int(char *single_arg_of_array, int is_negative )
 {
-	if (is_negative && ft_strcmp(&single_arg_of_array[i][1], "2147483648") > 0)
+	if (is_negative && ft_strcmp(single_arg_of_array + 1, "2147483648") > 0)
 		return (1); 
-	if (!is_negative && ft_strcmp(&single_arg_of_array[i][0], "2147483647") > 0)
+	if (!is_negative && ft_strcmp(single_arg_of_array, "2147483647") > 0)
 		return (1);
 	return(0);
 }
@@ -104,7 +104,7 @@ static int  *char_array_to_int_array(char **split_str_array)
     int size;
 
     size = 0;
-    while (str_array[size])
+    while (split_str_array[size])
         size++;
     int_array = (int *)malloc(sizeof(int) * size);
     if (!int_array)

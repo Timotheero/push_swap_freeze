@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
+#include "../push_swap.h"
 
 char	*join_all_args(char **argv)
 {
@@ -70,7 +69,7 @@ int	general_check_input(int argc, char **argv)
 	}
 	else 
 		combined_str_of_args = argv[1];
-	split_str_array = ft_split(combined_str_of_args);
+	split_str_array = ft_split(combined_str_of_args,  ' ');
 	if (!split_str_array)
 		return(1);
 	if (link_to_check_functions(split_str_array))
