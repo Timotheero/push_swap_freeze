@@ -28,7 +28,7 @@ SRCS =	input_parsing/input_check.c\
 		operations/rotate.c\
 		operations/swap.c\
 		push_swap.c\
-		utils.c
+		utils.c\
 
 # Object files
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
