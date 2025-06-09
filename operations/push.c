@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
+#include "../push_swap.h"
+#include "../libft/libft.h"
 
 //pa	push a	moves the top element of stack b at the top of stack a
 int pa_push(t_stack *stack)
@@ -33,7 +33,7 @@ int pb_push(t_stack *stack)
 	if (stack->len_a == 0)
 		return (0);
 	memmove(&stack->stack_b[1], &stack->stack_b[0], stack->len_b * sizeof(int));
-	stack->stack_a[0] = stack->stack_b[0];
+	stack->stack_b[0] = stack->stack_a[0];
 	memmove(&stack->stack_a[0], &stack->stack_a[1], (stack->len_a - 1) * sizeof(int));
 	stack->len_a--;
 	stack->len_b++;
