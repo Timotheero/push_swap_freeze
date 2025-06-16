@@ -6,13 +6,12 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:25:24 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/12 18:25:24 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:50:45 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void k_sort(t_stack  *stack)
+void	k_sort(t_stack *stack)
 {
-
 }
