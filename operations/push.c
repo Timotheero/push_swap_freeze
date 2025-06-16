@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 // pa	push a	moves the top element of stack b at the top of stack a
 int	pa_push(t_stack *stack)

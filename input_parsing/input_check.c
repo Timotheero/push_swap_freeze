@@ -6,11 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 13:16:40 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 14:50:50 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:07:58 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 static int	check_arg_is_number(char **str_arr)
 {

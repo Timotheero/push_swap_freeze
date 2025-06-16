@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap"
+#include "../include/push_swap.h"
 
 // sa	swap a	swaps the 2 top elements of stack a
 int	sa_swap(t_stack *stack)

@@ -1,34 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap_old.c                                 :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 18:49:37 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 14:51:11 by tdietz-r         ###   ########.fr       */
+/*   Created: 2025/06/05 18:20:23 by tdietz-r          #+#    #+#             */
+/*   Updated: 2025/06/16 15:07:50 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	int		*numbers;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	int	i;
+	int	negative;
+	int	digit;
 
-	if (argc < 2)
+	i = 0;
+	negative = 1;
+	digit = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-')
+	{
+		negative = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+	{
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		digit = (digit * 10) + (str[i] - '0');
+		i++;
+	}
+	return (digit * negative);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
 		return (0);
-	numbers = ft_parse_check(argc, argv);
-	if (!numbers || ft_has_error())
-		return (ft_print_error(), ft_cleanup());
-	if (ft_is_sorted(numbers))
-		;
-	return (free(numbers), 0);
-	stack_a = ft_allocate_stack_a(numbers);
-	stack_b = ft_allocate_stack_b();
-	ft_main_sort(ps);
-	ft_free_stacks(stack_a, stack_b);
-	return (0);
 }

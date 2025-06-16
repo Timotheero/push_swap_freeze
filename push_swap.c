@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "/push_swap.h"
 
 int	free_exit(t_stack *stack)
 {

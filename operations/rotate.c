@@ -6,11 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:14:02 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 14:51:03 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:08:26 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // ra	rotate a	shifts all elements of stack a from bottom to top
 int	ra_rotate(t_stack *stack)

@@ -6,11 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:12:55 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 14:49:58 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:07:28 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	sort_three(t_stack *stack)
 {

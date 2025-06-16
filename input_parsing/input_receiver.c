@@ -6,11 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:38:59 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 14:50:57 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:07:55 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 char	*join_all_args(char **argv)
 {
