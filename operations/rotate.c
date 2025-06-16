@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:14:02 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:08:26 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:17:28 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ra_rotate(t_stack *stack)
 
 	if (stack->len_a <= 1)
 		return (0);
-	temp = stack->stack_a[0]
-			memmove(&stack->stack_a[0], &stack->stack_a[1], (stack->- 1)
-				* sizeof(int));
+	temp = stack->stack_a[0];
+	memmove(&stack->stack_a[0], &stack->stack_a[1], (stack->len_a - 1)
+		* sizeof(int));
 	stack->stack_a[stack->len_a - 1] = temp;
 	ft_printf("ra\n");
 	return (0);
@@ -67,13 +67,5 @@ int	rrb_rotate(t_stack *stack)
 	temp = stack->stack_b[stack->len_b - 1];
 	memmove(&stack->stack_b[1], &stack->stack_b[0]) stack->stack_b[0] = temp;
 	ft_printf("rrb\n");
-	return (0);
-}
-
-// rrr	reverse rotate a + reverse rotate b	both rra and rrb
-int	rrr_rotate(t_stack *stack)
-{
-	rra_rotate(t_stack * stack);
-	rrb_rotate(t_stack * stack);
 	return (0);
 }

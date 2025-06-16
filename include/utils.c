@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:20:23 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:07:50 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:13:41 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,31 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char		*ndst;
+	unsigned const char	*nsrc;
+	int					i;
+
+	if ((dst == NULL && src == NULL))
+		return (NULL);
+	ndst = (unsigned char *)dst;
+	nsrc = (const unsigned char *)src;
+	if (nsrc < ndst && nsrc + len > ndst)
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			ndst[i] = nsrc[i];
+		}
+	}
+	else
+	{
+		while (len--)
+			*ndst++ = *nsrc++;
+	}
+	return (dst);
 }

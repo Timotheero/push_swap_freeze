@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:12:55 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:07:28 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:12:36 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,15 @@ void	sort_small(t_stack *stack)
 
 int	find_min_index(t_stack *stack)
 {
-	int i;
-	int min_idx;
-	int min_val;
+	int	i;
+	int	min_idx;
+	int	min_val;
 
 	if (!stack || stack->len_a == 0)
 		return (-1);
-
 	i = 0;
 	min_idx = 0;
 	min_val = stack->stack_a[0];
-
 	while (i < stack->len_a)
 	{
 		if (stack->stack_a[i] < min_val)
