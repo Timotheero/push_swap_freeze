@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:12:55 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:12:36 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:30:59 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,27 @@ void	sort_three(t_stack *stack)
 		rra_rrotate(stack);
 }
 
-void	sort_stack(t_stack *stack)
+int	find_min_index(t_stack *stack)
 {
-	if (!stack || stack->len_a <= 1)
-		return ;
-	if (is_sorted(stack))
-		return ;
-	if (stack->len_a == 2)
+	int	i;
+	int	min_idx;
+	int	min_val;
+
+	if (!stack || stack->len_a == 0)
+		return (-1);
+	i = 0;
+	min_idx = 0;
+	min_val = stack->stack_a[0];
+	while (i < stack->len_a)
 	{
-		if (stack->stack_a[0] > stack->stack_a[1])
-			sa_swap(stack);
+		if (stack->stack_a[i] < min_val)
+		{
+			min_val = stack->stack_a[i];
+			min_idx = i;
+			i++;
+		}
 	}
-	else if (stack->len_a == 3)
-		sort_three(stack);
-	else if (stack->len_a <= 5)
-		sort_small(stack);
-	else
-		k_sort(stack);
+	return (min_idx);
 }
 
 void	sort_small(t_stack *stack)
@@ -86,25 +90,37 @@ void	sort_small(t_stack *stack)
 		pa_push(stack);
 }
 
-int	find_min_index(t_stack *stack)
+void	sort_stack(t_stack *stack)
+{
+	if (!stack || stack->len_a <= 1)
+		return ;
+	if (is_sorted(stack))
+		return ;
+	if (stack->len_a == 2)
+	{
+		if (stack->stack_a[0] > stack->stack_a[1])
+			sa_swap(stack);
+	}
+	else if (stack->len_a == 3)
+		sort_three(stack);
+	else if (stack->len_a <= 5)
+		sort_small(stack);
+	else
+		k_sort(stack);
+}
+
+int	is_sorted(t_stack *stack)
 {
 	int	i;
-	int	min_idx;
-	int	min_val;
 
-	if (!stack || stack->len_a == 0)
-		return (-1);
+	if (!stack || stack->len_a <= 1)
+		return (1);
 	i = 0;
-	min_idx = 0;
-	min_val = stack->stack_a[0];
-	while (i < stack->len_a)
+	while (i < stack->len_a - 1)
 	{
-		if (stack->stack_a[i] < min_val)
-		{
-			min_val = stack->stack_a[i];
-			min_idx = i;
-			i++;
-		}
-		return (min_idx);
+		if (stack->stack_a[i] > stack->stack_a[i + 1])
+			return (0);
+		i++;
 	}
+	return (1);
 }

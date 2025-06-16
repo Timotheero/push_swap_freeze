@@ -22,7 +22,11 @@ INCLUDES	:= -I. -I$(LIBFT_DIR)
 OBJ_DIR		:= obj
 
 # SRC files
-SRCS =	input_parsing/input_check.c\
+SRCS =	algorithm/sort_small.c\
+		algorithm/sort_big.c\
+		include/ft_split.c\
+		include/utils.c\
+		input_parsing/input_check.c\
 		input_parsing/input_receiver.c\
 		operations/push.c\
 		operations/rotate.c\
