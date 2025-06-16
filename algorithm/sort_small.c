@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:12:55 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:30:59 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:32:10 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,22 @@ void	sort_small(t_stack *stack)
 		pa_push(stack);
 }
 
+int	is_sorted(t_stack *stack)
+{
+	int	i;
+
+	if (!stack || stack->len_a <= 1)
+		return (1);
+	i = 0;
+	while (i < stack->len_a - 1)
+	{
+		if (stack->stack_a[i] > stack->stack_a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	sort_stack(t_stack *stack)
 {
 	if (!stack || stack->len_a <= 1)
@@ -107,20 +123,4 @@ void	sort_stack(t_stack *stack)
 		sort_small(stack);
 	else
 		k_sort(stack);
-}
-
-int	is_sorted(t_stack *stack)
-{
-	int	i;
-
-	if (!stack || stack->len_a <= 1)
-		return (1);
-	i = 0;
-	while (i < stack->len_a - 1)
-	{
-		if (stack->stack_a[i] > stack->stack_a[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }
