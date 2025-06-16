@@ -12,36 +12,35 @@
 
 #include "push_swap"
 
-
-//sa	swap a	swaps the 2 top elements of stack a
-int sa_swap(t_stack *stack)
+// sa	swap a	swaps the 2 top elements of stack a
+int	sa_swap(t_stack *stack)
 {
-	int temp;
+	int	temp;
 
-	temp  = stack -> stack_a[0];
-	stack -> stack_a[0] = stack->stack_a [1];
-	stack ->stack_a[1] = temp;
+	temp = stack->stack_a[0];
+	stack->stack_a[0] = stack->stack_a[1];
+	stack->stack_a[1] = temp;
 	ft_printf("sa\n");
-	return(0);
+	return (0);
 }
 
-//sb	swap b	swaps the 2 top elements of stack b
-int sb_swap(t_stack *stack)
+// sb	swap b	swaps the 2 top elements of stack b
+int	sb_swap(t_stack *stack)
 {
-	int temp;
+	int	temp;
 
-	temp  = stack -> stack_b[0];
-	stack -> stack_b[0] = stack->stack_b [1];
-	stack ->stack_b[1] = temp;
+	temp = stack->stack_b[0];
+	stack->stack_b[0] = stack->stack_b[1];
+	stack->stack_b[1] = temp;
 	ft_printf("sb\n");
-	return(0);
+	return (0);
 }
 
-//ss	swap a + swap b	both sa and sb
-int ss_swap(t_stack *stack)
+// ss	swap a + swap b	both sa and sb
+int	ss_swap(t_stack *stack)
 {
-	sa_swap( stack);
-	sb_swap( stack);
+	sa_swap(stack);
+	sb_swap(stack);
 	ft_printf("ss\n");
-	return(0);
+	return (0);
 }
