@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:20:23 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:13:41 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:37:00 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,84 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			*ndst++ = *nsrc++;
 	}
 	return (dst);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	lensrc;
+
+	lensrc = 0;
+	i = 0;
+	while (src[lensrc] != '\0')
+		lensrc++;
+	if (dstsize == 0)
+		return (lensrc);
+	while (src[i] && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (lensrc);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*dst;
+	int		len;
+
+	i = 0;
+	len = 0;
+	while (s1[len])
+		len++;
+	dst = (char *)malloc((sizeof(char)) * (len + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (len > i)
+	{
+		dst[i] = s1[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*dst;
+
+	if (!s1 || !s2)
+		return (NULL);
+	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!dst)
+		return (NULL);
+	ft_strlcpy(dst, s1, ft_strlen(s1) + 1);
+	ft_strlcpy(&dst[ft_strlen(s1)], s2, ft_strlen(s2) + 1);
+	return (dst);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[0] != 0)
+	{
+		s++;
+		len++;
+	}
+	return (len);
 }
