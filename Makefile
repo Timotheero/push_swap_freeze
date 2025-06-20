@@ -17,8 +17,7 @@
 NAME		:= push_swap
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
-LIBFT_DIR	:= libft
-INCLUDES	:= -I. -I$(LIBFT_DIR) 
+INCLUDES	:= -I.
 OBJ_DIR		:= obj
 
 # SRC files
@@ -32,7 +31,6 @@ SRCS =	algorithm/sort_small.c\
 		operations/rotate.c\
 		operations/swap.c\
 		push_swap.c\
-		utils.c\
 
 # Object files
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -44,8 +42,6 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
-# including libarys
-LIBFT		:= $(LIBFT_DIR)/libft.a
 
 # all rule
 all: $(NAME)
@@ -56,22 +52,15 @@ $(OBJ_DIR):
 
 # compile executable
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $@
-
-
-# build libarys
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) $(OBJS)  -o $@
 
 
 # clean
 clean:
 	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME) 
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
