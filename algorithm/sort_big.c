@@ -6,23 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:25:24 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/21 00:10:28 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:28:57 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-static void	copy_stack_to_array(t_stack *stack, int *sorted_copy)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->len_a)
-	{
-		sorted_copy[i] = stack->stack_a[i];
-		i++;
-	}
-}
 
 static void	bubble_sort_array(int *array, int size)
 {

@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:15:16 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/21 00:07:16 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:28:47 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_free_split(char **split);
 int		*char_array_to_int_array(char **split_str_array);
 void	sort_stack(t_stack *stack);
+void	copy_stack_to_array(t_stack *stack, int *sorted_copy);
+
 
 #endif
