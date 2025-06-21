@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:38:59 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/21 00:17:23 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:10:52 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,37 +66,81 @@ static int	link_to_check_functions(char **split_str_array)
 	return (0);
 }
 
+static int	*process_and_validate(char *combined_str, char **split_array)
+{
+	int	*final_int_array;
+
+	if (link_to_check_functions(split_array))
+	{
+		free(combined_str);
+		ft_free_split(split_array);
+		return (NULL);
+	}
+	final_int_array = char_array_to_int_array(split_array);
+	if (!final_int_array)
+	{
+		free(combined_str);
+		ft_free_split(split_array);
+		return (NULL);
+	}
+	free(combined_str);
+	ft_free_split(split_array);
+	return (final_int_array);
+}
+
 int	*general_check_input(char **argv)
 {
-	char	*combined_str_of_args;
+	char	*input_str;
 	char	**split_str_array;
-	int		*final_int_array;
 
 	if (!argv[1])
 		return (NULL);
-	combined_str_of_args = join_all_args(argv);
-	if (!combined_str_of_args)
+	if (!argv[2])
+		input_str = ft_strdup(argv[1]);
+	else
+		input_str = join_all_args(argv);
+	if (!input_str)
 		return (NULL);
-	split_str_array = ft_split(combined_str_of_args, ' ');
+	split_str_array = ft_split(input_str, ' ');
 	if (!split_str_array)
 	{
-		free(combined_str_of_args);
+		free(input_str);
 		return (NULL);
 	}
-	if (link_to_check_functions(split_str_array))
-	{
-		free(combined_str_of_args);
-		ft_free_split(split_str_array);
-		return (NULL);
-	}
-	final_int_array = char_array_to_int_array(split_str_array);
-	if (!final_int_array)
-	{
-		free(combined_str_of_args);
-		ft_free_split(split_str_array);
-		return (NULL);
-	}
-	free(combined_str_of_args);
-	ft_free_split(split_str_array);
-	return (final_int_array);
+	return (process_and_validate(input_str, split_str_array));
 }
+
+// int	*general_check_input(char **argv)
+// {
+// 	char	*combined_str_of_args;
+// 	char	**split_str_array;
+// 	int		*final_int_array;
+
+// 	if (!argv[1])
+// 		return (NULL);
+// 	combined_str_of_args = join_all_args(argv);
+// 	if (!combined_str_of_args)
+// 		return (NULL);
+// 	split_str_array = ft_split(combined_str_of_args, ' ');
+// 	if (!split_str_array)
+// 	{
+// 		free(combined_str_of_args);
+// 		return (NULL);
+// 	}
+// 	if (link_to_check_functions(split_str_array))
+// 	{
+// 		free(combined_str_of_args);
+// 		ft_free_split(split_str_array);
+// 		return (NULL);
+// 	}
+// 	final_int_array = char_array_to_int_array(split_str_array);
+// 	if (!final_int_array)
+// 	{
+// 		free(combined_str_of_args);
+// 		ft_free_split(split_str_array);
+// 		return (NULL);
+// 	}
+// 	free(combined_str_of_args);
+// 	ft_free_split(split_str_array);
+// 	return (final_int_array);
+// }

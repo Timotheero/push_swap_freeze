@@ -25,6 +25,7 @@ SRCS =	algorithm/sort_small.c\
 		algorithm/sort_big.c\
 		include/ft_split.c\
 		include/utils.c\
+		include/utils2.c\
 		input_parsing/input_check.c\
 		input_parsing/input_receiver.c\
 		operations/push.c\

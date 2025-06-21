@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:20:23 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/20 23:37:00 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:33:24 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,54 +103,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (lensrc);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*dst;
-	int		len;
-
-	i = 0;
-	len = 0;
-	while (s1[len])
-		len++;
-	dst = (char *)malloc((sizeof(char)) * (len + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (len > i)
-	{
-		dst[i] = s1[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dst;
-
-	if (!s1 || !s2)
-		return (NULL);
-	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!dst)
-		return (NULL);
-	ft_strlcpy(dst, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(&dst[ft_strlen(s1)], s2, ft_strlen(s2) + 1);
-	return (dst);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[0] != 0)
-	{
-		s++;
-		len++;
-	}
-	return (len);
 }
