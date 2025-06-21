@@ -23,7 +23,7 @@ int	pa_push(t_stack *stack)
 		* sizeof(int));
 	stack->len_a++;
 	stack->len_b--;
-	ft_printf("pa\n");
+	write(1, "pa\n",3);
 	return (0);
 }
 
@@ -38,6 +38,6 @@ int	pb_push(t_stack *stack)
 		* sizeof(int));
 	stack->len_a--;
 	stack->len_b++;
-	ft_printf("pb\n");
+	write(1, "pb\n",3);
 	return (0);
 }

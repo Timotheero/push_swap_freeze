@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:12:55 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:32:10 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:15:45 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	find_min_index(t_stack *stack)
 		{
 			min_val = stack->stack_a[i];
 			min_idx = i;
-			i++;
 		}
+		i++;
 	}
 	return (min_idx);
 }

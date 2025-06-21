@@ -20,7 +20,7 @@ int	sa_swap(t_stack *stack)
 	temp = stack->stack_a[0];
 	stack->stack_a[0] = stack->stack_a[1];
 	stack->stack_a[1] = temp;
-	ft_printf("sa\n");
+	write(1, "sa\n", 3);
 	return (0);
 }
 
@@ -32,7 +32,7 @@ int	sb_swap(t_stack *stack)
 	temp = stack->stack_b[0];
 	stack->stack_b[0] = stack->stack_b[1];
 	stack->stack_b[1] = temp;
-	ft_printf("sb\n");
+	write(1, "sb\n", 3);
 	return (0);
 }
 
@@ -41,6 +41,6 @@ int	ss_swap(t_stack *stack)
 {
 	sa_swap(stack);
 	sb_swap(stack);
-	ft_printf("ss\n");
+	write(1, "ss\n", 3);
 	return (0);
 }

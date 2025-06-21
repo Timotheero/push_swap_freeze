@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:14:02 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:37:02 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/21 00:18:57 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ra_rotate(t_stack *stack)
 	memmove(&stack->stack_a[0], &stack->stack_a[1], (stack->len_a - 1)
 		* sizeof(int));
 	stack->stack_a[stack->len_a - 1] = temp;
-	ft_printf("ra\n");
+	write(1, "ra\n", 3);
 	return (0);
 }
 
@@ -32,15 +32,36 @@ int	rb_rotate(t_stack *stack)
 {
 	int	temp;
 
-	if (stack->len_a <= 1)
+	if (stack->len_b <= 1)
 		return (0);
+	temp = stack->stack_b[0];
+	memmove(&stack->stack_b[0], &stack->stack_b[1], (stack->len_b - 1)
+		* sizeof(int));
+	stack->stack_b[stack->len_b - 1] = temp;
+	write(1, "rb\n", 3);
+	return (0);
 }
 
 // rr	rotate a + rotate b	both ra and rb
 int	rr_rotate(t_stack *stack)
 {
-	ra_rotate(stack);
-	rb_rotate(stack);
+	int	temp;
+
+	if (stack->len_a > 1)
+	{
+		temp = stack->stack_a[0];
+		memmove(&stack->stack_a[0], &stack->stack_a[1], (stack->len_a - 1)
+			* sizeof(int));
+		stack->stack_a[stack->len_a - 1] = temp;
+	}
+	if (stack->len_b > 1)
+	{
+		temp = stack->stack_b[0];
+		memmove(&stack->stack_b[0], &stack->stack_b[1], (stack->len_b - 1)
+			* sizeof(int));
+		stack->stack_b[stack->len_b - 1] = temp;
+	}
+	write(1, "rr\n", 3);
 	return (0);
 }
 
@@ -55,7 +76,7 @@ int	rra_rrotate(t_stack *stack)
 	memmove(&stack->stack_a[1], &stack->stack_a[0], (stack->len_a - 1)
 		* sizeof(int));
 	stack->stack_a[0] = temp;
-	ft_printf("rra\n");
+	write(1, "rra\n", 4);
 	return (0);
 }
 
@@ -70,6 +91,6 @@ int	rrb_rotate(t_stack *stack)
 	memmove(&stack->stack_b[1], &stack->stack_b[0], (stack->len_b - 1)
 		* sizeof(int));
 	stack->stack_b[0] = temp;
-	ft_printf("rrb\n");
+	write(1, "rrb\n", 4);
 	return (0);
 }
