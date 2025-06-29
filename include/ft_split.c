@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:10:20 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/16 15:35:11 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 22:31:08 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,9 @@ static char	**ft_strsplit(char const *s, char c, char **dst, int word_count)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	char	**dst;
 	int		word_count;
 
-	i = 0;
 	if (!s)
 		return (NULL);
 	word_count = ft_word_count(s, c);
