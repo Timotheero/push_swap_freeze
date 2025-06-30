@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:38:59 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/21 16:10:52 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/30 03:00:52 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*join_all_args(char **argv)
 	int		i;
 
 	if (!argv || !argv[1])
-		return (NULL);
+		print_error_and_exit();
 	combined_str_of_args = ft_strdup(argv[1]);
 	if (!combined_str_of_args)
-		return (NULL);
+		print_error_and_exit();
 	i = 1;
 	while (argv[++i])
 	{
@@ -30,12 +30,12 @@ char	*join_all_args(char **argv)
 		free(combined_str_of_args);
 		combined_str_of_args = temp;
 		if (!combined_str_of_args)
-			return (NULL);
+			print_error_and_exit();
 		temp = ft_strjoin(combined_str_of_args, argv[i]);
 		free(combined_str_of_args);
 		combined_str_of_args = temp;
 		if (!combined_str_of_args)
-			return (NULL);
+			print_error_and_exit();
 	}
 	return (combined_str_of_args);
 }
@@ -70,18 +70,19 @@ static int	*process_and_validate(char *combined_str, char **split_array)
 {
 	int	*final_int_array;
 
-	if (link_to_check_functions(split_array))
+	if (!split_array || link_to_check_functions(split_array))
 	{
 		free(combined_str);
-		ft_free_split(split_array);
-		return (NULL);
+		if (split_array)
+			ft_free_split(split_array);
+		print_error_and_exit();
 	}
 	final_int_array = char_array_to_int_array(split_array);
 	if (!final_int_array)
 	{
 		free(combined_str);
 		ft_free_split(split_array);
-		return (NULL);
+		print_error_and_exit();
 	}
 	free(combined_str);
 	ft_free_split(split_array);
@@ -92,22 +93,26 @@ int	*general_check_input(char **argv)
 {
 	char	*input_str;
 	char	**split_str_array;
+	int		*result;
 
 	if (!argv[1])
-		return (NULL);
+		print_error_and_exit();
 	if (!argv[2])
 		input_str = ft_strdup(argv[1]);
 	else
 		input_str = join_all_args(argv);
 	if (!input_str)
-		return (NULL);
+		print_error_and_exit();
 	split_str_array = ft_split(input_str, ' ');
 	if (!split_str_array)
 	{
 		free(input_str);
-		return (NULL);
+		print_error_and_exit();
 	}
-	return (process_and_validate(input_str, split_str_array));
+	result = process_and_validate(input_str, split_str_array);
+	if (!result)
+		print_error_and_exit();
+	return (result);
 }
 
 // int	*general_check_input(char **argv)

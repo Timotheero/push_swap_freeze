@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:10:20 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/26 22:31:08 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/30 03:02:24 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ static char	**ft_strsplit(char const *s, char c, char **dst, int word_count)
 		indices[1] = i;
 		if (!ft_put_word(s, word_index, dst, indices))
 		{
-			while (word_index > 0)
-				free(dst[--word_index]);
+			while (word_index >= 0)
+				free(dst[word_index--]);
+			free(dst);
 			return (NULL);
 		}
 		word_index++;
@@ -98,10 +99,7 @@ char	**ft_split(char const *s, char c)
 	if (!dst)
 		return (NULL);
 	if (!ft_strsplit(s, c, dst, word_count))
-	{
-		free(dst);
 		return (NULL);
-	}
 	dst[word_count] = NULL;
 	return (dst);
 }
