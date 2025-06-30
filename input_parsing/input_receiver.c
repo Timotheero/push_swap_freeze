@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:38:59 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/30 03:00:52 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/30 03:14:24 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,19 @@ static int	link_to_check_functions(char **split_str_array)
 	return (0);
 }
 
-static int	*process_and_validate(char *combined_str, char **split_array)
+static int	*process_and_validate(char **split_array)
 {
 	int	*final_int_array;
 
 	if (!split_array || link_to_check_functions(split_array))
 	{
-		free(combined_str);
-		if (split_array)
-			ft_free_split(split_array);
-		print_error_and_exit();
+		ft_free_split(split_array);
+		return (NULL);
 	}
 	final_int_array = char_array_to_int_array(split_array);
-	if (!final_int_array)
-	{
-		free(combined_str);
-		ft_free_split(split_array);
-		print_error_and_exit();
-	}
-	free(combined_str);
 	ft_free_split(split_array);
+	if (!final_int_array)
+		return (NULL);
 	return (final_int_array);
 }
 
@@ -95,12 +88,12 @@ int	*general_check_input(char **argv)
 	char	**split_str_array;
 	int		*result;
 
+	input_str = NULL;
+	split_str_array = NULL;
+	result = NULL;
 	if (!argv[1])
 		print_error_and_exit();
-	if (!argv[2])
-		input_str = ft_strdup(argv[1]);
-	else
-		input_str = join_all_args(argv);
+	input_str = (!argv[2]) ? ft_strdup(argv[1]) : join_all_args(argv);
 	if (!input_str)
 		print_error_and_exit();
 	split_str_array = ft_split(input_str, ' ');
@@ -109,7 +102,8 @@ int	*general_check_input(char **argv)
 		free(input_str);
 		print_error_and_exit();
 	}
-	result = process_and_validate(input_str, split_str_array);
+	result = process_and_validate(split_str_array);
+	free(input_str);
 	if (!result)
 		print_error_and_exit();
 	return (result);

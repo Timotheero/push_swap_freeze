@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:25:24 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/30 00:55:09 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/06/30 03:13:22 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ static void	normalize_to_index(t_stack *stack)
 
 	sorted_copy = malloc(stack->len_a * sizeof(int));
 	if (!sorted_copy)
-		return ;
+	{
+		free(stack->stack_a);
+		free(stack->stack_b);
+		print_error_and_exit();
+	}
 	copy_stack_to_array(stack, sorted_copy);
 	bubble_sort_array(sorted_copy, stack->len_a);
 	replace_values_with_indices(stack, sorted_copy);
