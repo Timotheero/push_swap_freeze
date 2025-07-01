@@ -16,7 +16,7 @@
 # variables
 NAME		:= push_swap
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror 
 INCLUDES	:= -I.
 OBJ_DIR		:= obj
 
