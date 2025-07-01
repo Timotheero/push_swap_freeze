@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:09:17 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/30 23:23:55 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/07/01 01:12:05 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int	main(int argc, char **argv)
 	t_stack	stack;
 	int		*int_array;
 
-	stack = {0};
+	ft_memset(&stack, 0, sizeof(stack));
 	int_array = NULL;
 	if (argc < 2)
-		return (free_exit(&stack, NULL, NULL));
+		return (0);
 	if (argc == 2)
 		stack.len_a = count_words(argv[1], ' ');
 	else
@@ -78,14 +78,13 @@ int	main(int argc, char **argv)
 	stack.stack_a = malloc(stack.len_a * sizeof(int));
 	stack.stack_b = ft_calloc(stack.len_a, sizeof(int));
 	if (!stack.stack_a || !stack.stack_b)
-		return (free_exit(&stack, NULL, NULL));
+		print_error_and_exit(&stack, NULL, NULL);
 	int_array = general_check_input(argv);
 	if (!int_array)
-		return (free_exit(&stack, NULL, NULL));
+		print_error_and_exit(&stack, NULL, NULL);
 	copy_array_to_stack(&stack, int_array);
-	free(int_array);
 	sort_stack(&stack);
-	free_exit(&stack, NULL, NULL);
+	free_all_resources(&stack, int_array, NULL);
 	return (0);
 }
 

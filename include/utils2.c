@@ -6,17 +6,11 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:33:26 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/30 23:43:12 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:06:40 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_error_and_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
 
 char	*ft_strdup(const char *s1)
 {
@@ -87,4 +81,20 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return ((void *)ptr);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			count;
+	unsigned char	*bb;
+
+	bb = b;
+	count = 0;
+	while (len != 0)
+	{
+		bb[count] = (unsigned char)c;
+		len--;
+		count++;
+	}
+	return (b);
 }

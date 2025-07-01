@@ -16,7 +16,7 @@
 # variables
 NAME		:= push_swap
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		:= -Wall -Wextra -Werror -g
 INCLUDES	:= -I.
 OBJ_DIR		:= obj
 
@@ -32,6 +32,7 @@ SRCS =	algorithm/sort_small.c\
 		operations/rotate.c\
 		operations/swap.c\
 		push_swap.c\
+		include/free.c\
 
 # Object files
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -52,7 +53,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 # compile executable
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS)  -o $@
 
 

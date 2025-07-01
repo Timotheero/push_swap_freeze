@@ -6,7 +6,7 @@
 /*   By: tdietz-r <tdietz-r@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:15:16 by tdietz-r          #+#    #+#             */
-/*   Updated: 2025/06/30 01:16:45 by tdietz-r         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:01:59 by tdietz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	copy_stack_to_array(t_stack *stack, int *sorted_copy);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		count_words(const char *str, char sep);
 void	*ft_calloc(size_t count, size_t size);
-void	print_error_and_exit(void);
+void	free_stack(t_stack *stack);
+void	print_error_and_exit(t_stack *stack, int *int_array,
+			char **split_array);
+void	free_all_resources(t_stack *stack, int *int_array, char **split_array);
+void	free_stack(t_stack *stack);
+void	*ft_memset(void *b, int c, size_t len);
 
 #endif
